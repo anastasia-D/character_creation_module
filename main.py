@@ -1,32 +1,35 @@
 from random import randint
 
 
-def attack(char_name, char_class):
+def attack(char_name: str, char_class: str) -> str:
+    """Define character's attack."""
     if char_class == 'warrior':
-        warrior_damage = 5 + randint(3, 5)
+        warrior_damage: int = 5 + randint(3, 5)
         return (f'{char_name} нанёс урон противнику равный {warrior_damage}')
     if char_class == 'mage':
-        mage_damage = 5 + randint(5, 10)
+        mage_damage: int = 5 + randint(5, 10)
         return (f'{char_name} нанёс урон противнику равный {mage_damage}')
     if char_class == 'healer':
-        healer_damage = 5 + randint(-3, -1)
+        healer_damage: int = 5 + randint(-3, -1)
         return (f'{char_name} нанёс урон противнику равный {healer_damage}')
     return (f'{char_name} не атаковал!')
 
 
-def defence(char_name, char_class):
+def defence(char_name: str, char_class: str) -> str:
+    """Define character's defence."""
     if char_class == 'warrior':
         return (f'{char_name} блокировал {10 + randint(5, 10)} урона')
     if char_class == 'mage':
         return (f'{char_name} блокировал {10 + randint(-2, 2)} урона')
     if char_class == 'healer':
         return (f'{char_name} блокировал {10 + randint(2, 5)} урона')
-    return {f'{char_name} не защищался!'}
+    return (f'{char_name} не защищался!')
 
 
-def special(char_name, char_class):
+def special(char_name: str, char_class: str) -> str:
+    """Define character's special ability."""
     if char_class == 'warrior':
-        w_special = f'«Выносливость {80 + 25}»'
+        w_special: str = f'«Выносливость {80 + 25}»'
         return (f'{char_name} применил специальное умение {w_special}')
     if char_class == 'mage':
         return (f'{char_name} применил специальное умение «Атака {5 + 40}»')
@@ -35,7 +38,8 @@ def special(char_name, char_class):
     return (f'{char_name} не применил специальное умение!')
 
 
-def start_training(char_name, char_class):
+def start_training(char_name: str, char_class: str) -> str:
+    """Start training and give an option to choose an action."""
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -61,6 +65,7 @@ def start_training(char_name, char_class):
 
 
 def choice_char_class():
+    """Choose class and see the definition of it."""
     approve_choice = None
     char_class = None
     while approve_choice != 'y':
@@ -85,18 +90,3 @@ def choice_char_class():
         )
         approve_choice = input(approve_line).lower()
     return char_class
-
-
-def main():
-    print('Приветствую тебя, искатель приключений!')
-    print('Прежде чем начать игру...')
-    char_name = input('...назови себя: ')
-    print(f'Здравствуй, {char_name}! '
-          'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
-    print('Ты можешь выбрать один из трёх путей силы:')
-    print('Воитель, Маг, Лекарь')
-    char_class = choice_char_class()
-    print(start_training(char_name, char_class))
-
-
-main()
